@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/jessicadeen/.oh-my-zsh
+export ZSH=/Users/klebersoares/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -26,32 +26,31 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{red} \Uf1d0 %f %F{yellow
-}❯ "
+POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{red} ☕ %f %F{yellow}❯ "
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
 
 # # Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
-# if [ -n "$TMUX" ]; then                                                                               
-#   function refresh {                                                                                
-#     export $(tmux show-environment | grep "^SSH_AUTH_SOCK")                                       
-#     export $(tmux show-environment | grep "^DISPLAY")                                               
-#   }                                                                                                 
-# else                                                                                                  
-#   function refresh { }                                                                              
+# if [ -n "$TMUX" ]; then
+#   function refresh {
+#     export $(tmux show-environment | grep "^SSH_AUTH_SOCK")
+#     export $(tmux show-environment | grep "^DISPLAY")
+#   }
+# else
+#   function refresh { }
 # fi
 
 # # Then, I define a preexec hook that calls refresh before each new command that gets executed:
-# function preexec {                                                                                    
-#     refresh                                                                                           
+# function preexec {
+#     refresh
 # }
 
 # POWERLEVEL9K_TIME_FORMAT="%D{%T | %m.%d.%y}"
-## 
+##
 
 # Default username to hide "user@hostname" info
-DEFAULT_USER="jessicadeen"
+DEFAULT_USER="klebersoares"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -129,7 +128,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Example aliases
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
-alias config='/usr/bin/git --git-dir=/Users/jessicadeen/.cfg/ --work-tree=/Users/jessicadeen'
+alias config='/usr/bin/git --git-dir=/Users/klebersoares/.cfg/ --work-tree=/Users/klebersoares'
 alias EDITOR=nvim
 
 #Powerline
@@ -140,8 +139,14 @@ fi
 repository_root="$HOME/Library/Python/2.7/lib/python/site-packages"
 . $repository_root/powerline/bindings/zsh/powerline.zsh
 
-export PATH=$PATH:/Users/jessicadeen/bin
+export PATH=$PATH:/Users/klebersoares/bin
 autoload bashcompinit && bashcompinit
-source '/Users/jessicadeen/lib/azure-cli/az.completion'
+# source '/Users/klebersoares/lib/azure-cli/az.completion'
 
 
+# export PATH="/usr/local/sbin:$PATH"
+# export PATH="/usr/local/bin:$PATH"
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
