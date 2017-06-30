@@ -28,8 +28,9 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{red} ☕ %f %F{yellow}❯ "
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context time dir vcs virtualenv)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
+
 
 # # Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
 # if [ -n "$TMUX" ]; then
@@ -94,10 +95,11 @@ DEFAULT_USER="klebersoares"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
+plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions pyenv virtualenv virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 
 # User configuration
 
@@ -126,10 +128,11 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #
 
 # Example aliases
-alias zshconfig="code ~/.zshrc"
-alias ohmyzsh="code ~/.oh-my-zsh"
-alias config='/usr/bin/git --git-dir=/Users/klebersoares/.cfg/ --work-tree=/Users/klebersoares'
-alias EDITOR=nvim
+# alias zshconfig="code ~/.zshrc"
+# alias ohmyzsh="code ~/.oh-my-zsh"
+# alias config='/usr/bin/git --git-dir=/Users/klebersoares/.cfg/ --work-tree=/Users/klebersoares'
+# alias EDITOR=nvim
+alias code="cd ~/Documents/Workspace/code"
 
 #Powerline
 if [ -d "$HOME/Library/Python/2.7/bin" ]; then
@@ -139,14 +142,29 @@ fi
 repository_root="$HOME/Library/Python/2.7/lib/python/site-packages"
 . $repository_root/powerline/bindings/zsh/powerline.zsh
 
-export PATH=$PATH:/Users/klebersoares/bin
-autoload bashcompinit && bashcompinit
+# export PATH=$PATH:/Users/klebersoares/bin
+# autoload bashcompinit && bashcompinit
 # source '/Users/klebersoares/lib/azure-cli/az.completion'
 
 
-# export PATH="/usr/local/sbin:$PATH"
-# export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+
+# PATH=/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
+# export PATH
+
+# # needed for virtualenvwrapper
+# export WORKON_HOME=$HOME/.virtualenvs
+# source /usr/local/bin/virtualenvwrapper.sh
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# # pyenv
+# if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi

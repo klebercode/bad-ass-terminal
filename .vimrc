@@ -299,12 +299,12 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-" nnoremap <silent> <F2> :NERDTreeFind<CR>
-" noremap <F3> :NERDTreeToggle<CR>
-" Toggle NERDTree
-nmap <silent> <leader>k :NERDTreeToggle<cr>
-" expand to the path of the file in the current buffer
-nmap <silent> <leader>y :NERDTreeFind<cr>
+nnoremap <silent> <F2> :NERDTreeFind<CR>
+noremap <F3> :NERDTreeToggle<CR>
+" " Toggle NERDTree
+" nmap <silent> <leader>k :NERDTreeToggle<cr>
+" " expand to the path of the file in the current buffer
+" nmap <silent> <leader>y :NERDTreeFind<cr>
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -720,6 +720,11 @@ set cursorline
 nnoremap <leader>ci :set cursorline!<cr>
 " set cursorcolumn
 nnoremap <leader>cc :set cursorcolumn!<cr>
+
+" set number
+nnoremap <leader>n :set number!<cr>
+" set no number
+nnoremap <leader>nn :set nonumber!<cr>
 
 " clear highlighted search
 noremap <space> :set hlsearch! hlsearch?<cr>
