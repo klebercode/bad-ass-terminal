@@ -55,9 +55,11 @@ else
 endif
 let g:make = 'gmake'
 if exists('make')
-        let g:make = 'make'
+    let g:make = 'make'
 endif
 Plug 'Shougo/vimproc.vim', {'do': g:make}
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
 
 "" Vim-Session
 Plug 'xolox/vim-misc'
@@ -76,6 +78,8 @@ Plug 'honza/vim-snippets'
 
 "" Color
 Plug 'tomasr/molokai'
+Plug 'dracula/vim'
+Plug 'jordwalke/flatlandia'
 
 "*****************************************************************************
 "" Custom bundles
@@ -119,6 +123,7 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
+Plug 'tomasr/molokai'
 Plug 'dracula/vim'
 
 "*****************************************************************************
@@ -195,8 +200,11 @@ set number
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
+  " let g:molokai_original = 1
+  " let g:rehash256 = 1
   " colorscheme molokai
-  colorscheme dracula
+  " colorscheme dracula
+  colorscheme flatlandia
 endif
 
 set mousemodel=popup
