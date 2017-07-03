@@ -713,6 +713,10 @@ endif
 
 " remove extra whitespace
 nmap <leader><space> :%s/\s\+$<cr>
+
+" remove extra whitespace
+nmap <leader>m :e ++ff=dos<cr>
+
 " replate href, src start img, css, js to static
 map <leader>st :%s/\v(href\|src)\="((img\|css\|js)[^"]+)"/\1\="{% static '\2' %}"/gc
 " replate background-image start img, css, js to static
@@ -773,3 +777,5 @@ set wrapmargin=0
 " vim-one italic
 set t_8b=^[[48;2;%lu;%lu;%lum
 set t_8f=^[[38;2;%lu;%lu;%lum
+
+set mouse=a

@@ -97,7 +97,7 @@ DEFAULT_USER="klebersoares"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions pyenv virtualenv virtualenvwrapper)
+plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -130,11 +130,13 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #
 
 # Example aliases
-# alias zshconfig="code ~/.zshrc"
-# alias ohmyzsh="code ~/.oh-my-zsh"
 # alias config='/usr/bin/git --git-dir=/Users/klebersoares/.cfg/ --work-tree=/Users/klebersoares'
-# alias EDITOR=nvim
-alias code="cd ~/Documents/Workspace/code"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+alias zshconf="vim ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+alias tmuxconf="vim ~/.tmux.conf"
+alias ws="cd ~/Documents/Workspace/code"
+alias murucutu="ssh root@192.155.93.236"
 
 #Powerline
 if [ -d "$HOME/Library/Python/2.7/bin" ]; then
@@ -152,21 +154,23 @@ repository_root="$HOME/Library/Python/2.7/lib/python/site-packages"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 
+
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-
 # PATH=/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
 # export PATH
+
 
 # # needed for virtualenvwrapper
 # export WORKON_HOME=$HOME/.virtualenvs
 # source /usr/local/bin/virtualenvwrapper.sh
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+
 
 # # pyenv
 # if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
