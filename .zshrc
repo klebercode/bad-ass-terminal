@@ -132,7 +132,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Example aliases
 # alias config='/usr/bin/git --git-dir=/Users/klebersoares/.cfg/ --work-tree=/Users/klebersoares'
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias zshconf="vim ~/.zshrc"
+alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias tmuxconf="vim ~/.tmux.conf"
 alias ws="cd ~/Documents/Workspace/code"
@@ -171,6 +171,10 @@ export PATH="/usr/local/bin:$PATH"
 
 # # pyenv
 # if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+
+export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"

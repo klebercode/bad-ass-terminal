@@ -44,7 +44,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 if isdirectory('/usr/local/opt/fzf')
@@ -75,9 +75,6 @@ if v:version >= 704
 endif
 
 Plug 'honza/vim-snippets'
-
-"" Color
-Plug 'dracula/vim'
 
 "*****************************************************************************
 "" Custom bundles
@@ -134,7 +131,7 @@ endif
 
 call plug#end()
 
-" Required:
+" Required
 filetype plugin indent on
 
 
@@ -231,12 +228,11 @@ if has("gui_running")
 else
   let g:CSApprox_loaded = 1
 
-  " IndentLine
-  let g:indentLine_enabled = 1
-  let g:indentLine_concealcursor = 0
-  let g:indentLine_char = '┆'
-  let g:indentLine_faster = 1
-
+  " " IndentLine
+  " " ¦, ┆, │, ⎸, ▏
+  " let g:indentLine_enabled = 1
+  " let g:indentLine_concealcursor = 0
+  " let g:indentLine_char = '┆'
 
   if $COLORTERM == 'gnome-terminal'
     set term=gnome-256color
@@ -714,7 +710,7 @@ endif
 " remove extra whitespace
 nmap <leader><space> :%s/\s\+$<cr>
 
-" remove extra whitespace
+" remove 
 nmap <leader>m :e ++ff=dos<cr>
 
 " replate href, src start img, css, js to static
@@ -779,3 +775,16 @@ set t_8b=^[[48;2;%lu;%lu;%lum
 set t_8f=^[[38;2;%lu;%lu;%lum
 
 set mouse=a
+
+" git gutter
+let g:gitgutter_realtime = 0
+let g:gitgutter_max_signs = 99999
+
+" fix problem slow scroll vim with hmtl and css files
+set lazyredraw
+
+" collapse indent
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
