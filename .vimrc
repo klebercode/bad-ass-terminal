@@ -146,13 +146,19 @@ set bomb
 set binary
 set ttyfast
 
+" Collapse indent
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+
 "" Fix backspace indent
 set backspace=indent,eol,start
 
 "" Tabs. May be overriten by autocmd rules
-set tabstop=4
-set softtabstop=0
-set shiftwidth=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 set expandtab
 
 "" Map leader to ,
@@ -622,7 +628,7 @@ let g:javascript_enable_domhtmlcss = 1
 " vim-javascript
 augroup vimrc-javascript
   autocmd!
-  autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
+  autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2
 augroup END
 
 
@@ -782,9 +788,3 @@ let g:gitgutter_max_signs = 99999
 
 " fix problem slow scroll vim with hmtl and css files
 set lazyredraw
-
-" collapse indent
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
-set foldlevel=2
