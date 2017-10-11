@@ -10,7 +10,7 @@ endif
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "c,elixir,elm,go,html,javascript,python"
-let g:vim_bootstrap_editor = "vim"				" nvim or vim
+let g:vim_bootstrap_editor = "vim"                " nvim or vim
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -120,6 +120,14 @@ Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 Plug 'tomasr/molokai'
 Plug 'dracula/vim'
+
+Plug 'nvie/vim-flake8'
+Plug 'hhatto/autopep8'
+
+
+" vue
+Plug 'posva/vim-vue'
+Plug 'Quramy/tsuquyomi-vue'
 
 "*****************************************************************************
 "*****************************************************************************
@@ -653,7 +661,7 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
 
 " syntastic
-let g:syntastic_python_checkers=['python', 'flake8']
+let g:syntastic_python_checkers=['python', 'flake8', 'pylint']
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
@@ -788,3 +796,10 @@ let g:gitgutter_max_signs = 99999
 
 " fix problem slow scroll vim with hmtl and css files
 set lazyredraw
+
+" vue plugins
+autocmd FileType vue syntax sync fromstart
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+
+" autopep8
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>

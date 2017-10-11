@@ -137,6 +137,14 @@ alias vimrc="vim ~/.vimrc"
 alias tmuxconf="vim ~/.tmux.conf"
 alias ws="cd ~/Documents/Workspace/code"
 alias murucutu="ssh root@192.155.93.236"
+alias tunel="./ngrok http 8000"
+alias manage='python $VIRTUAL_ENV/../manage.py'
+
+function _eac {
+  pyenv activate $*;
+}
+alias eac="_eac"
+alias ede="pyenv deactivate"
 
 #Powerline
 if [ -d "$HOME/Library/Python/2.7/bin" ]; then
@@ -178,3 +186,6 @@ eval "$(pyenv init -)"
 
 
 export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
+
+# Add Visual Studio Code (code)
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
