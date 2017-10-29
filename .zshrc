@@ -205,3 +205,7 @@ export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
 
 # Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
+export ANDROID_HOME="/usr/local/share/android-sdk"
+export JAVA_HOME=$(/usr/libexec/java_home)
