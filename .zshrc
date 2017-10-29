@@ -140,11 +140,27 @@ alias murucutu="ssh root@192.155.93.236"
 alias tunel="./ngrok http 8000"
 alias manage='python $VIRTUAL_ENV/../manage.py'
 
+# pyenv venv
 function _eac {
   pyenv activate $*;
 }
 alias eac="_eac"
 alias ede="pyenv deactivate"
+###################################
+
+# Make, Activate venv
+function _venvmk {
+  python -m venv $*;
+}
+alias venvmk=_venvmk
+
+function _venvac {
+  source $*/bin/activate;
+}
+alias venvac=_venvac
+alias venvde="deactivate"
+###################################
+
 
 #Powerline
 if [ -d "$HOME/Library/Python/2.7/bin" ]; then
