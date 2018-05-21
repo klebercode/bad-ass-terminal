@@ -8,8 +8,13 @@ export ZSH=/Users/klebersoares/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_MODE='awesome-patched'
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# aqui
+# POWERLEVEL9K_MODE='awesome-patched'
+# ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="zhann"
+ZSH_THEME="dracula"
+# ZSH_THEME="spaceship"
+# ----
 
 # POWERLEVEL9K_IP_INTERFACE='en0'
 # POWERLEVEL9K_PUBLIC_IP_HOST='http://ident.me'
@@ -17,21 +22,23 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # zsh tmux settings
 ZSH_TMUX_AUTOSTART='true'
 
-## Powerlevel9k Settings
-POWERLEVEL9K_HISTORY_BACKGROUND='green'
+# aqui
+# ## Powerlevel9k Settings
+# POWERLEVEL9K_HISTORY_BACKGROUND='green'
 
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+# POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+# POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{red}☕ %f %F{yellow}❯ "
+# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+# POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{red}☕ %f %F{yellow}❯ "
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context time dir vcs virtualenv)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context time dir vcs virtualenv)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
 
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+# POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+# ----
 
 
 # # Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
@@ -97,10 +104,11 @@ DEFAULT_USER="klebersoares"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
+plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fpath=(/usr/local/share/zsh-completions $fpath)
 
 
 # User configuration
@@ -139,6 +147,7 @@ alias ws="cd ~/Documents/Workspace/code"
 alias murucutu="ssh root@192.155.93.236"
 alias tunel="./ngrok http 8000"
 alias manage='python $VIRTUAL_ENV/../manage.py'
+alias run='python $VIRTUAL_ENV/../manage.py runserver'
 
 # pyenv venv
 function _eac {
@@ -162,13 +171,15 @@ alias venvde="deactivate"
 ###################################
 
 
-#Powerline
-if [ -d "$HOME/Library/Python/2.7/bin" ]; then
-    PATH="$HOME/Library/Python/2.7/bin:$PATH"
-fi
+# aqui
+# #Powerline
+# if [ -d "$HOME/Library/Python/2.7/bin" ]; then
+#     PATH="$HOME/Library/Python/2.7/bin:$PATH"
+# fi
 
-repository_root="$HOME/Library/Python/2.7/lib/python/site-packages"
-. $repository_root/powerline/bindings/zsh/powerline.zsh
+# repository_root="$HOME/Library/Python/2.7/lib/python/site-packages"
+# . $repository_root/powerline/bindings/zsh/powerline.zsh
+# ----
 
 # export PATH=$PATH:/Users/klebersoares/bin
 # autoload bashcompinit && bashcompinit
@@ -194,18 +205,35 @@ export PATH="/usr/local/bin:$PATH"
 
 
 # # pyenv
-# if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-
-export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
 # Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+export PATH="$PATH:/usr/local/Cellar/gradle/4.6/bin"
 
-export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
-export ANDROID_HOME="/usr/local/share/android-sdk"
+export ANDROID_HOME="/Users/klebersoares/Library/Android/sdk"
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+# export ANDROID_SDK_ROOT="/usr/local/share/android-sdk/"
+# export ANDROID_HOME="/usr/local/share/android-sdk/"
 export JAVA_HOME=$(/usr/libexec/java_home)
+
+# export TERM="xterm-256color"
+
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnubin:$MANPATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+export PATH="/Users/klebersoares/Documents/Workspace/code/flutter/bin:$PATH"
+
+export PATH="/usr/local/opt/apr/bin:$PATH"
+export PATH="/usr/local/opt/apr-util/bin:$PATH"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
