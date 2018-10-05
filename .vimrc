@@ -234,7 +234,10 @@ endif
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
-  colorscheme dracula
+  " colorscheme dracula
+  syntax enable
+  set background=light
+  colorscheme solarized
 endif
 
 set mousemodel=popup
@@ -300,7 +303,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'dracula'  " 'powerlineish'
+" let g:airline_theme = 'dracula'  " 'powerlineish'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -632,11 +635,11 @@ augroup END
 
 " html
 " for html files, 2 spaces
-" autocmd Filetype html setlocal ts=2 sw=2 expandtab
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+" autocmd BufNewFile,BufRead *.js, *.html, *.css
+"     \ set tabstop=2
+"     \ set softtabstop=2
+"     \ set shiftwidth=2
 
 " javascript
 let g:javascript_enable_domhtmlcss = 1

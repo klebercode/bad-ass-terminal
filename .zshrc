@@ -237,3 +237,10 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+# eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/klebersoares/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/klebersoares/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/klebersoares/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/klebersoares/google-cloud-sdk/completion.zsh.inc'; fi
