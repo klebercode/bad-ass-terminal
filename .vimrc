@@ -236,7 +236,7 @@ let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
   " colorscheme dracula
   syntax enable
-  set background=light
+  set background=dark
   colorscheme solarized
 endif
 

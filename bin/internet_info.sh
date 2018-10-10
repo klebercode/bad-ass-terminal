@@ -20,6 +20,8 @@ else
 fi
 
 # echo -n "$INTERNET  -[$internet_info]db #[fg=colour197]$IP | $PUB_IP"
-dracula
-echo -n "#[fg=colour141]$IP #[fg=colour240]| #[fg=colour141]$PUB_IP"
+# # dracula
+# echo -n "#[fg=colour141]$IP #[fg=colour240]| #[fg=colour141]$PUB_IP"
+# solarized light
+echo -n "#[fg=yellow]$IP #[fg=brightcyan]| #[fg=yellow]$PUB_IP"
 
