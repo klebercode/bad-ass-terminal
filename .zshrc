@@ -148,6 +148,8 @@ alias murucutu="ssh root@192.155.93.236"
 alias tunel="./ngrok http 8000"
 alias manage='python $VIRTUAL_ENV/../manage.py'
 alias run='python $VIRTUAL_ENV/../manage.py runserver'
+alias rmmigrations='find . -path "*/migrations/*.py" -not -name "__init__.py" -delete'
+alias rmmigrationscache='find . -path "*/migrations/*.pyc"  -delete'
 
 # pyenv venv
 function _eac {
@@ -169,7 +171,6 @@ function _venvac {
 alias venvac=_venvac
 alias venvde="deactivate"
 ###################################
-
 
 # aqui
 # #Powerline
