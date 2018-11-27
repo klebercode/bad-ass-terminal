@@ -40,7 +40,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
@@ -61,6 +61,7 @@ endif
 Plug 'Shougo/vimproc.vim', {'do': g:make}
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
+Plug 'myusuf3/numbers.vim'
 
 "" Vim-Session
 Plug 'xolox/vim-misc'
@@ -121,8 +122,12 @@ Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 Plug 'tomasr/molokai'
 Plug 'dracula/vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-python/python-syntax'
+Plug 'joshdick/onedark.vim'
 
-Plug 'nvie/vim-flake8'
+" Plug 'nvie/vim-flake8'
 Plug 'hhatto/autopep8'
 
 
@@ -232,12 +237,15 @@ if (empty($TMUX))
   endif
 endif
 
-let no_buffers_menu=1
+" let g:solarized_use16 = 1
+let no_buffers_menu = 1
 if !exists('g:not_finish_vimplug')
   " colorscheme dracula
   syntax enable
   set background=dark
   colorscheme solarized
+  " syntax on
+  " colorscheme onedark
 endif
 
 set mousemodel=popup
@@ -280,7 +288,7 @@ set gcr=a:blinkon0
 set scrolloff=3
 
 "" Status bar
-source $HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
+" source $HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
 set laststatus=2
 
 "" Use modeline overrides
@@ -672,7 +680,7 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
 
 " syntastic
-let g:syntastic_python_checkers=['python', 'flake8', 'pylint']
+let g:syntastic_python_checkers=['pylint']
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
@@ -732,8 +740,9 @@ else
 endif
 
 
-" remove extra whitespace
-nmap <leader><space> :%s/\s\+$<cr>
+" remove whitespace
+" nmap <leader><space> :%s/\s\+$<cr>
+autocmd BufWritePre * :%s/\s\+$//e
 
 " remove
 nmap <leader>m :e ++ff=dos<cr>
@@ -762,7 +771,7 @@ nmap \m :set ts=2 sts=2 sw=2 et<cr>
 " toggle cursor line
 set cursorline
 nnoremap <leader>ci :set cursorline!<cr>
-" set cursorcolumn
+set cursorcolumn
 nnoremap <leader>cc :set cursorcolumn!<cr>
 
 " set number
@@ -832,7 +841,7 @@ autocmd FileType typescript syn clear foldBraces
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
@@ -841,8 +850,27 @@ let g:syntastic_typescript_checkers = ['tsuquyomi']
 autocmd FileType typescript,html call angular_cli#init()
 autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angular_cli#init() | endif
 
-hi htmlTag ctermfg=231 ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=NONE gui=NONE
-hi htmlEndTag ctermfg=231 ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=NONE gui=NONE
-hi htmlTagName ctermfg=212 ctermbg=NONE cterm=NONE guifg=#ff79c6 guibg=NONE gui=NONE
-hi htmlArg ctermfg=84 ctermbg=NONE cterm=NONE guifg=#50fa7b guibg=NONE gui=NONE
-hi htmlSpecialChar ctermfg=141 ctermbg=NONE cterm=NONE guifg=#bd93f9 guibg=NONE gui=NONE
+" Dracula Theme
+" hi htmlTag ctermfg=231 ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=NONE gui=NONE
+" hi htmlEndTag ctermfg=231 ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=NONE gui=NONE
+" hi htmlTagName ctermfg=212 ctermbg=NONE cterm=NONE guifg=#ff79c6 guibg=NONE gui=NONE
+" hi htmlArg ctermfg=84 ctermbg=NONE cterm=NONE guifg=#50fa7b guibg=NONE gui=NONE
+" hi htmlSpecialChar ctermfg=141 ctermbg=NONE cterm=NONE guifg=#bd93f9 guibg=NONE gui=NONE
+
+" Solarized Theme
+hi CursorLineNr ctermfg=166 ctermbg=NONE cterm=NONE guifg=#d75f00 guibg=NONE gui=NONE
+
+" ale
+let g:ale_lint_on_text_changed = 'never'
+" Check Python files with flake8 and pylint.
+let g:ale_linters = {'python': ['flake8', 'pylint']}
+" Fix Python files with autopep8 and yapf.
+let g:ale_fixers = {'python': ['autopep8', 'yapf']}
+" Disable warnings about trailing whitespace for Python files.
+let g:ale_warn_about_trailing_whitespace = 1
+
+" python syntax
+let g:python_highlight_all = 1
+
+" angular-cli
+autocmd FileType typescript,html call angular_cli#init()
