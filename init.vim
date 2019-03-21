@@ -1,4 +1,4 @@
-" vim-bootstrap 3340bde
+" vim-bootstrap b0a75e4
 
 "*****************************************************************************
 "" Vim-PLug core
@@ -7,10 +7,10 @@ if has('vim_starting')
   set nocompatible               " Be iMproved
 endif
 
-let vimplug_exists=expand('~/.vim/autoload/plug.vim')
+let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "c,elixir,elm,go,html,javascript,python"
-let g:vim_bootstrap_editor = "vim"                " nvim or vim
+let g:vim_bootstrap_editor = "nvim"				" nvim or vim
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -19,14 +19,14 @@ if !filereadable(vimplug_exists)
   endif
   echo "Installing Vim-Plug..."
   echo ""
-  silent !\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   let g:not_finish_vimplug = "yes"
 
   autocmd VimEnter * PlugInstall
 endif
 
 " Required:
-call plug#begin(expand('~/.vim/plugged'))
+call plug#begin(expand('~/.config/nvim/plugged'))
 
 "*****************************************************************************
 "" Plug install packages
@@ -55,7 +55,7 @@ else
 endif
 let g:make = 'gmake'
 if exists('make')
-  let g:make = 'make'
+        let g:make = 'make'
 endif
 Plug 'Shougo/vimproc.vim', {'do': g:make}
 Plug 'mattn/webapi-vim'
@@ -126,7 +126,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 
-" Plug 'nvie/vim-flake8'
+Plug 'nvie/vim-flake8'
 Plug 'hhatto/autopep8'
 
 
@@ -145,13 +145,13 @@ Plug 'bdauria/angular-cli.vim'
 "*****************************************************************************
 
 "" Include user's extra bundle
-if filereadable(expand("~/.vimrc.local.bundles"))
-  source ~/.vimrc.local.bundles
+if filereadable(expand("~/.config/nvim/local_bundles.vim"))
+  source ~/.config/nvim/local_bundles.vim
 endif
 
 call plug#end()
 
-" Required
+" Required:
 filetype plugin indent on
 
 
@@ -164,7 +164,7 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set bomb
 set binary
-set ttyfast
+
 
 " Collapse indent
 set foldmethod=indent
@@ -176,9 +176,9 @@ set foldlevel=99
 set backspace=indent,eol,start
 
 "" Tabs. May be overriten by autocmd rules
-set shiftwidth=2
-set softtabstop=2
 set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 
 "" Map leader to ,
@@ -201,13 +201,13 @@ set fileformats=unix,dos,mac
 set showcmd
 
 if exists('$SHELL')
-  set shell=$SHELL
+    set shell=$SHELL
 else
-  set shell=/bin/sh
+    set shell=/bin/sh
 endif
 
 " session management
-let g:session_directory = "~/.vim/session"
+let g:session_directory = "~/.config/nvim/session"
 let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
@@ -238,7 +238,7 @@ if (has("autocmd") && !has("gui_running"))
   augroup END
 endif
 
-let no_buffers_menu = 1
+let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
   " colorscheme dracula
 
@@ -269,19 +269,6 @@ else
   let g:indentLine_concealcursor = 0
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
-
-  if $COLORTERM == 'gnome-terminal'
-    set term=gnome-256color
-  else
-    if $TERM == 'xterm'
-      set term=xterm-256color
-    endif
-  endif
-
-endif
-
-if &term =~ '256color'
-  set t_ut=
 endif
 
 
@@ -290,7 +277,6 @@ set gcr=a:blinkon0
 set scrolloff=3
 
 "" Status bar
-" source $HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
 set laststatus=2
 
 "" Use modeline overrides
@@ -313,13 +299,12 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-" let g:airline_theme = 'onedark'  " 'dracula'  'powerlineish'
+" let g:airline_theme = 'powerlineish'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
-let g:airline_powerline_fonts = 1
 
 "*****************************************************************************
 "" Abbreviations
@@ -350,11 +335,7 @@ let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
-noremap <F3> :NERDTreeToggle<CR>
-" " Toggle NERDTree
-" nmap <silent> <leader>k :NERDTreeToggle<cr>
-" " expand to the path of the file in the current buffer
-" nmap <silent> <leader>y :NERDTreeFind<cr>
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -376,13 +357,13 @@ endif
 "*****************************************************************************
 "" Functions
 "*****************************************************************************
-" if !exists('*s:setupWrapping')
-"   function s:setupWrapping()
-"     set wrap
-"     set wm=2
-"     set textwidth=79
-"   endfunction
-" endif
+if !exists('*s:setupWrapping')
+  function s:setupWrapping()
+    set wrap
+    set wm=2
+    set textwidth=79
+  endfunction
+endif
 
 "*****************************************************************************
 "" Autocmd Rules
@@ -566,30 +547,18 @@ let g:elm_format_autosave = 1
 let g:polyglot_disabled = ['elm']
 
 " syntastic
-let g:elm_syntastic_show_warnings = 1
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:elm_syntastic_show_warnings = 1
 
 
 " go
-let g:tagbar_type_go = {
-      \ 'ctagstype' : 'go',
-      \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
-      \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
-      \ 'r:constructor', 'f:functions' ],
-      \ 'sro' : '.',
-      \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
-      \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
-      \ 'ctagsbin'  : 'gotags',
-      \ 'ctagsargs' : '-sort -silent'
-      \ }
-
 " vim-go
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
   let l:file = expand('%')
   if l:file =~# '^\f\+_test\.go$'
-    call go#cmd#Test(0, 1)
+    call go#test#Test(0, 1)
   elseif l:file =~# '^\f\+\.go$'
     call go#cmd#Build(0)
   endif
@@ -607,13 +576,14 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_highlight_structs = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_space_tab_error = 0
 let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
-let g:go_highlight_extra_types = 0
+let g:go_highlight_extra_types = 1
 
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 augroup completion_preview_close
   autocmd!
@@ -640,18 +610,18 @@ augroup go
   au FileType go nmap <Leader>i <Plug>(go-info)
   au FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
   au FileType go nmap <C-g> :GoDecls<cr>
+  au FileType go nmap <leader>dr :GoDeclsDir<cr>
   au FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
+  au FileType go imap <leader>dr <esc>:<C-u>GoDeclsDir<cr>
   au FileType go nmap <leader>rb :<C-u>call <SID>build_go_files()<CR>
 
 augroup END
 
+
 " html
 " for html files, 2 spaces
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
-" autocmd BufNewFile,BufRead *.js, *.html, *.css
-"     \ set tabstop=2
-"     \ set softtabstop=2
-"     \ set shiftwidth=2
+
 
 " javascript
 let g:javascript_enable_domhtmlcss = 1
@@ -659,7 +629,7 @@ let g:javascript_enable_domhtmlcss = 1
 " vim-javascript
 augroup vimrc-javascript
   autocmd!
-  autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2
+  autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
 augroup END
 
 
@@ -667,9 +637,9 @@ augroup END
 " vim-python
 augroup vimrc-python
   autocmd!
-  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 colorcolumn=79
-        \ formatoptions+=croq softtabstop=4
-        \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+      \ formatoptions+=croq softtabstop=4
+      \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
 
 " jedi-vim
@@ -684,7 +654,7 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
 
 " syntastic
-let g:syntastic_python_checkers=['pylint']
+let g:syntastic_python_checkers=['python', 'flake8', 'pylint']
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
@@ -692,15 +662,15 @@ let g:airline#extensions#virtualenv#enabled = 1
 " Syntax highlight
 " Default highlight is better than polyglot
 let g:polyglot_disabled = ['python']
-let g:python_highlight_all = 1
+let python_highlight_all = 1
 
 
 "*****************************************************************************
 "*****************************************************************************
 
 "" Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
+if filereadable(expand("~/.config/nvim/local_init.vim"))
+  source ~/.config/nvim/local_init.vim
 endif
 
 "*****************************************************************************
@@ -738,9 +708,9 @@ else
   let g:airline_left_alt_sep = ''
   let g:airline_right_sep = ''
   let g:airline_right_alt_sep = ''
-  let g:airline_symbols.linenr = ''
   let g:airline_symbols.branch = ''
   let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
 endif
 
 
@@ -835,7 +805,7 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 " vim-js-pretty-template
-autocmd FileType typescript JsPreTmpl
+autocmd FileType typescript JsPreTmpl html
 autocmd FileType typescript syn clear foldBraces
 
 set statusline+=%#warningmsg#
@@ -868,3 +838,7 @@ let g:ale_linters = {'python': ['flake8', 'pylint']}
 let g:ale_fixers = {'python': ['autopep8', 'yapf']}
 " Disable warnings about trailing whitespace for Python files.
 let g:ale_warn_about_trailing_whitespace = 1
+
+
+let g:python_host_prog = '~/.neovim2/bin/python'
+let g:python3_host_prog = '~/.neovim3/bin/python'

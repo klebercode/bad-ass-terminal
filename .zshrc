@@ -2,71 +2,28 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/klebersoares/.oh-my-zsh
+export ZSH="/Users/klebersoares/.oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# POWERLEVEL9K_MODE='awesome-fontconfig'
-# aqui
-# POWERLEVEL9K_MODE='awesome-patched'
-# ZSH_THEME="powerlevel9k/powerlevel9k"
-# ZSH_THEME="zhann"
-ZSH_THEME="dracula"
-# ZSH_THEME="spaceship"
-# ----
+ZSH_THEME="robbyrussell"
 
-# POWERLEVEL9K_IP_INTERFACE='en0'
-# POWERLEVEL9K_PUBLIC_IP_HOST='http://ident.me'
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # zsh tmux settings
 ZSH_TMUX_AUTOSTART='true'
 
-# aqui
-# ## Powerlevel9k Settings
-# POWERLEVEL9K_HISTORY_BACKGROUND='green'
-
-# POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-# POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-
-# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-
-# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-# POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{red}☕ %f %F{yellow}❯ "
-
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context time dir vcs virtualenv)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
-
-# POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-# ----
-
-
-# # Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
-# if [ -n "$TMUX" ]; then
-#   function refresh {
-#     export $(tmux show-environment | grep "^SSH_AUTH_SOCK")
-#     export $(tmux show-environment | grep "^DISPLAY")
-#   }
-# else
-#   function refresh { }
-# fi
-
-# # Then, I define a preexec hook that calls refresh before each new command that gets executed:
-# function preexec {
-#     refresh
-# }
-
-# POWERLEVEL9K_TIME_FORMAT="%D{%T | %m.%d.%y}"
-##
-
-# Default username to hide "user@hostname" info
-DEFAULT_USER="klebersoares"
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
@@ -94,22 +51,35 @@ DEFAULT_USER="klebersoares"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
+plugins=(
+  sudo
+  git
+  history
+  taskwarrior
+  tmux
+  tmuxinator
+  zsh-autosuggestions
+  zsh-completions
+  zsh-syntax-highlighting
+)
+
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fpath=(/usr/local/share/zsh-completions $fpath)
-
 
 # User configuration
 
@@ -136,12 +106,14 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-
 # Example aliases
-# alias config='/usr/bin/git --git-dir=/Users/klebersoares/.cfg/ --work-tree=/Users/klebersoares'
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vim="nvim"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
+alias init="vim ~/.config/nvim/init.vim"
 alias tmuxconf="vim ~/.tmux.conf"
 alias ws="cd ~/Documents/Workspace/code"
 alias murucutu="ssh root@192.155.93.236"
@@ -150,6 +122,7 @@ alias manage='python $VIRTUAL_ENV/../manage.py'
 alias run='python $VIRTUAL_ENV/../manage.py runserver'
 alias rmmigrations='find . -path "*/migrations/*.py" -not -name "__init__.py" -delete'
 alias rmmigrationscache='find . -path "*/migrations/*.pyc"  -delete'
+alias emulator="/Users/klebersoares/Library/Android/sdk/emulator/emulator -avd Nexus_5X_API_28 -netdelay none -netspeed full -dns-server 8.8.8.8"
 
 # pyenv venv
 function _eac {
@@ -172,76 +145,18 @@ alias venvac=_venvac
 alias venvde="deactivate"
 ###################################
 
-# aqui
-# #Powerline
-# if [ -d "$HOME/Library/Python/2.7/bin" ]; then
-#     PATH="$HOME/Library/Python/2.7/bin:$PATH"
-# fi
-
-# repository_root="$HOME/Library/Python/2.7/lib/python/site-packages"
-# . $repository_root/powerline/bindings/zsh/powerline.zsh
-# ----
-
-# export PATH=$PATH:/Users/klebersoares/bin
-# autoload bashcompinit && bashcompinit
-# source '/Users/klebersoares/lib/azure-cli/az.completion'
-
-
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/bin:$PATH"
-
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-# PATH=/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
-# export PATH
-
-
-# # needed for virtualenvwrapper
-# export WORKON_HOME=$HOME/.virtualenvs
-# source /usr/local/bin/virtualenvwrapper.sh
-
-
-# # pyenv
+# pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
 
-# Add Visual Studio Code (code)
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-export PATH="$PATH:/usr/local/Cellar/gradle/4.6/bin"
-
-export ANDROID_HOME="/Users/klebersoares/Library/Android/sdk"
-export ANDROID_SDK_ROOT=$ANDROID_HOME
-# export ANDROID_SDK_ROOT="/usr/local/share/android-sdk/"
-# export ANDROID_HOME="/usr/local/share/android-sdk/"
-export JAVA_HOME=$(/usr/libexec/java_home)
-
-# export TERM="xterm-256color"
-
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnubin:$MANPATH"
+# export EDITOR='vim'
+export PATH="/usr/local/opt/gettext/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH="/Users/klebersoares/Documents/Workspace/code/flutter/bin:$PATH"
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/klebersoares/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
-export PATH="/usr/local/opt/apr/bin:$PATH"
-export PATH="/usr/local/opt/apr-util/bin:$PATH"
-export PATH="/usr/local/opt/libpq/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/icu4c/bin:$PATH"
-export PATH="/usr/local/opt/icu4c/sbin:$PATH"
-# eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/klebersoares/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/klebersoares/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/klebersoares/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/klebersoares/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH=$PATH:`pwd`/flutter/bin
+export PATH="~/Library/Android/sdk/build-tools/28.0.3/zipalign:$PATH"
