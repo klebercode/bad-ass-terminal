@@ -109,6 +109,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vi="vim"
 alias vim="nvim"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias zshrc="vim ~/.zshrc"
@@ -117,12 +118,16 @@ alias init="vim ~/.config/nvim/init.vim"
 alias tmuxconf="vim ~/.tmux.conf"
 alias ws="cd ~/Documents/Workspace/code"
 alias murucutu="ssh root@192.155.93.236"
+alias jacurutu="ssh kleber@134.209.70.17"
 alias tunel="./ngrok http 8000"
 alias manage='python $VIRTUAL_ENV/../manage.py'
 alias run='python $VIRTUAL_ENV/../manage.py runserver'
 alias rmmigrations='find . -path "*/migrations/*.py" -not -name "__init__.py" -delete'
 alias rmmigrationscache='find . -path "*/migrations/*.pyc"  -delete'
 alias emulator="/Users/klebersoares/Library/Android/sdk/emulator/emulator -avd Nexus_5X_API_28 -netdelay none -netspeed full -dns-server 8.8.8.8"
+alias worknow="./cli/start_work.sh"
+alias reviewnow="./cli/start_review.sh"
+alias nb="manage shell_plus --notebook"
 
 # pyenv venv
 function _eac {
@@ -146,6 +151,9 @@ alias venvde="deactivate"
 ###################################
 
 # pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # export EDITOR='vim'
@@ -160,3 +168,13 @@ HEROKU_AC_ZSH_SETUP_PATH=/Users/klebersoares/Library/Caches/heroku/autocomplete/
 
 export PATH=$PATH:`pwd`/flutter/bin
 export PATH="~/Library/Android/sdk/build-tools/28.0.3/zipalign:$PATH"
+
+
+export LANG="pt_BR.UTF-8"
+export LC_COLLATE="pt_BR.UTF-8"
+export LC_CTYPE="pt_BR.UTF-8"
+export LC_MESSAGES="pt_BR.UTF-8"
+export LC_MONETARY="pt_BR.UTF-8"
+export LC_NUMERIC="pt_BR.UTF-8"
+export LC_TIME="pt_BR.UTF-8"
+export LC_ALL="pt_BR.UTF-8"

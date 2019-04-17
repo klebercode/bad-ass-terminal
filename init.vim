@@ -31,6 +31,14 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
+" Syntax Checking
+"Plug 'benekastah/neomake'
+"Plug 'benjie/neomake-local-eslint.vim'
+Plug 'w0rp/ale'
+" Status line
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
+
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
@@ -42,7 +50,6 @@ Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
-Plug 'w0rp/ale'
 " Plug 'scrooloose/syntastic'
 Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
@@ -60,7 +67,8 @@ endif
 Plug 'Shougo/vimproc.vim', {'do': g:make}
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
-Plug 'myusuf3/numbers.vim'
+" Plug 'myusuf3/numbers.vim'
+Plug 'terryma/vim-multiple-cursors'
 
 "" Vim-Session
 Plug 'xolox/vim-misc'
@@ -71,7 +79,6 @@ if v:version >= 703
 endif
 
 if v:version >= 704
-  "" Snippets
   Plug 'SirVer/ultisnips'
 endif
 
@@ -218,6 +225,8 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set number
+set relativenumber
+set inccommand=split
 
 " onedark theme
 " if (has("autocmd"))
@@ -300,7 +309,7 @@ endif
 
 " vim-airline
 " let g:airline_theme = 'powerlineish'
-let g:airline#extensions#syntastic#enabled = 1
+" let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
@@ -458,19 +467,20 @@ nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
 
 " snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit = 'vertical'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+" let g:UltiSnipsSnippetDir = ['~/.config/nvim/plugged/vim-snippets/UltiSnips']
 
-" syntastic
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_auto_loc_list=1
-let g:syntastic_aggregate_errors = 1
+" " syntastic
+" let g:syntastic_always_populate_loc_list=1
+" let g:syntastic_error_symbol='✗'
+" let g:syntastic_warning_symbol='⚠'
+" let g:syntastic_style_error_symbol = '✗'
+" let g:syntastic_style_warning_symbol = '⚠'
+" let g:syntastic_auto_loc_list=1
+" let g:syntastic_aggregate_errors = 1
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -546,10 +556,10 @@ let g:elm_format_autosave = 1
 " vim-polyglot
 let g:polyglot_disabled = ['elm']
 
-" syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:elm_syntastic_show_warnings = 1
+" " syntastic
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:elm_syntastic_show_warnings = 1
 
 
 " go
@@ -567,8 +577,8 @@ endfunction
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
-let g:syntastic_go_checkers = ['golint', 'govet']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+" let g:syntastic_go_checkers = ['golint', 'govet']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
@@ -643,18 +653,16 @@ augroup vimrc-python
 augroup END
 
 " jedi-vim
-let g:jedi#popup_on_dot = 0
+let g:jedi#popup_on_dot = 1
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "0"
 let g:jedi#completions_command = "<C-Space>"
-let g:jedi#smart_auto_mappings = 0
 
-" syntastic
-let g:syntastic_python_checkers=['python', 'flake8', 'pylint']
+" " syntastic
+" let g:syntastic_python_checkers=['python', 'flake8', 'pylint']
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
@@ -728,6 +736,7 @@ map <leader>sb :%s/\v(background-image: url)\("((img\|css\|js)[^"]+)"/\1\({% sta
 
 " edit ~/.config/nvim/init.vim
 map <leader>ev :e! ~/.vimrc<cr>
+map <leader>ei :e! ~/.config/nvim/init.vim<cr>
 " edit gitconfig
 map <leader>eg :e! ~/.gitconfig<cr>
 " edit ~/.zshrc
@@ -808,13 +817,13 @@ autocmd QuickFixCmdPost    l* nested lwindow
 autocmd FileType typescript JsPreTmpl html
 autocmd FileType typescript syn clear foldBraces
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi']
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
+" let g:tsuquyomi_disable_quickfix = 1
+" let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " angular-cli
 autocmd FileType typescript,html call angular_cli#init()
@@ -839,6 +848,3 @@ let g:ale_fixers = {'python': ['autopep8', 'yapf']}
 " Disable warnings about trailing whitespace for Python files.
 let g:ale_warn_about_trailing_whitespace = 1
 
-
-let g:python_host_prog = '~/.neovim2/bin/python'
-let g:python3_host_prog = '~/.neovim3/bin/python'

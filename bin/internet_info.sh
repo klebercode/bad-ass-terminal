@@ -1,7 +1,9 @@
 #!/bin/bash
 
 IP=$(ipconfig getifaddr en0)
-PUB_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
+PUB_IP=$(dig whoami.akamai.net. @ns1-1.akamaitech.net. +short)
+# PUB_IP=$(dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com)
+# PUB_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
 
 INTERNET=''
 
@@ -19,9 +21,9 @@ else
     echo -n '#[fg=colour120]'
 fi
 
-# echo -n "$INTERNET  -[$internet_info]db #[fg=colour197]$IP | $PUB_IP"
-# # dracula
-# echo -n "#[fg=colour141]$IP #[fg=colour240]| #[fg=colour141]$PUB_IP"
+# echo -n "$INTERNET -[$internet_info]db #[fg=colour141]$IP #[fg=colour240]| #[fg=colour141]$PUB_IP"
+# dracula
+echo -n "#[fg=colour141]$IP #[fg=colour240]| #[fg=colour141]$PUB_IP"
 # solarized light
-echo -n "#[fg=yellow]$IP #[fg=brightcyan]| #[fg=yellow]$PUB_IP"
+# echo -n "#[fg=yellow]$IP #[fg=brightcyan]| #[fg=yellow]$PUB_IP"
 

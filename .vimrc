@@ -122,7 +122,7 @@ Plug 'jelera/vim-javascript-syntax'
 
 " python
 "" Python Bundle
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 
@@ -314,7 +314,7 @@ endif
 
 " vim-airline
 " let g:airline_theme = 'onedark'  " 'dracula'  'powerlineish'
-let g:airline#extensions#syntastic#enabled = 1
+" let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
@@ -482,14 +482,14 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 
-" syntastic
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_auto_loc_list=1
-let g:syntastic_aggregate_errors = 1
+" " syntastic
+" let g:syntastic_always_populate_loc_list=1
+" let g:syntastic_error_symbol='✗'
+" let g:syntastic_warning_symbol='⚠'
+" let g:syntastic_style_error_symbol = '✗'
+" let g:syntastic_style_warning_symbol = '⚠'
+" let g:syntastic_auto_loc_list=1
+" let g:syntastic_aggregate_errors = 1
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -565,10 +565,10 @@ let g:elm_format_autosave = 1
 " vim-polyglot
 let g:polyglot_disabled = ['elm']
 
-" syntastic
-let g:elm_syntastic_show_warnings = 1
-let g:syntastic_auto_loc_list = 1
-let g:elm_syntastic_show_warnings = 1
+" " syntastic
+" let g:elm_syntastic_show_warnings = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:elm_syntastic_show_warnings = 1
 
 
 " go
@@ -598,8 +598,8 @@ endfunction
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
-let g:syntastic_go_checkers = ['golint', 'govet']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+" let g:syntastic_go_checkers = ['golint', 'govet']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
@@ -672,19 +672,19 @@ augroup vimrc-python
         \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
 
-" jedi-vim
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "0"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#smart_auto_mappings = 0
+" " jedi-vim
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#goto_assignments_command = "<leader>g"
+" let g:jedi#goto_definitions_command = "<leader>d"
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>n"
+" let g:jedi#rename_command = "<leader>r"
+" let g:jedi#show_call_signatures = "0"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#smart_auto_mappings = 0
 
-" syntastic
-let g:syntastic_python_checkers=['pylint']
+" " syntastic
+" let g:syntastic_python_checkers=['pylint']
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
@@ -838,13 +838,13 @@ autocmd QuickFixCmdPost    l* nested lwindow
 autocmd FileType typescript JsPreTmpl
 autocmd FileType typescript syn clear foldBraces
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi']
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
+" let g:tsuquyomi_disable_quickfix = 1
+" let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " angular-cli
 autocmd FileType typescript,html call angular_cli#init()
