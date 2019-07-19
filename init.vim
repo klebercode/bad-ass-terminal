@@ -47,7 +47,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/grep.vim'
-Plug 'vim-scripts/CSApprox'
+" Plug 'vim-scripts/CSApprox'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 " Plug 'scrooloose/syntastic'
@@ -67,8 +67,9 @@ endif
 Plug 'Shougo/vimproc.vim', {'do': g:make}
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
-" Plug 'myusuf3/numbers.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'rizzatti/dash.vim'
+
 
 "" Vim-Session
 Plug 'xolox/vim-misc'
@@ -85,10 +86,11 @@ endif
 Plug 'honza/vim-snippets'
 
 "" Color
+Plug 'vim-python/python-syntax'
 Plug 'dracula/vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'vim-python/python-syntax'
 Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
 
 "*****************************************************************************
 "" Custom bundles
@@ -131,18 +133,23 @@ Plug 'jelera/vim-javascript-syntax'
 "" Python Bundle
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+Plug 'tweekmonster/django-plus.vim'
 
 
-Plug 'nvie/vim-flake8'
-Plug 'hhatto/autopep8'
+" flutter
+"" Flutter Bundle
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
 
 
 " " vue
+"" Vue Bundle
 " Plug 'posva/vim-vue'
 " Plug 'Quramy/tsuquyomi-vue'
 
 
 " angular
+"" Angular Bundle
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/vim-js-pretty-template'
 Plug 'Quramy/tsuquyomi'
@@ -239,25 +246,30 @@ set inccommand=split
 " endif
 
 " onedark theme
-if (has("autocmd") && !has("gui_running"))
-  augroup colorset
-    autocmd!
-    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
-  augroup END
-endif
+" if (has("autocmd") && !has("gui_running"))
+"   augroup colorset
+"     autocmd!
+"     let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+"     autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+"   augroup END
+" endif
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
   " colorscheme dracula
 
-  " syntax enable
-  " set background=dark
-  " let g:solarized_use16 = 1
-  " colorscheme solarized
+  set background=dark
+  let g:solarized_use16 = 1
+  colorscheme solarized
 
-  syntax on
-  colorscheme onedark
+  " colorscheme onedark
+
+  " set termguicolors
+  " colorscheme monokai_pro
+
+  " let g:gruvbox_italic=1
+  " let g:gruvbox_termcolors=16
+  " colorscheme gruvbox
 endif
 
 set mousemodel=popup
@@ -306,14 +318,6 @@ nnoremap N Nzzzv
 if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
 endif
-
-" vim-airline
-" let g:airline_theme = 'powerlineish'
-" let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline_skip_empty_sections = 1
 
 "*****************************************************************************
 "" Abbreviations
@@ -368,7 +372,7 @@ endif
 "*****************************************************************************
 if !exists('*s:setupWrapping')
   function s:setupWrapping()
-    set wrap
+    " set wrap
     set wm=2
     set textwidth=79
   endfunction
@@ -421,7 +425,7 @@ noremap <Leader>gsh :Gpush<CR>
 noremap <Leader>gll :Gpull<CR>
 noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
+noremap <Leader>gd :Gdiff<CR>
 noremap <Leader>gr :Gremove<CR>
 
 " session management
@@ -473,7 +477,7 @@ let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 " let g:UltiSnipsSnippetDir = ['~/.config/nvim/plugged/vim-snippets/UltiSnips']
 
-" " syntastic
+" syntastic
 " let g:syntastic_always_populate_loc_list=1
 " let g:syntastic_error_symbol='✗'
 " let g:syntastic_warning_symbol='⚠'
@@ -556,7 +560,7 @@ let g:elm_format_autosave = 1
 " vim-polyglot
 let g:polyglot_disabled = ['elm']
 
-" " syntastic
+" syntastic
 " let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
 " let g:elm_syntastic_show_warnings = 1
@@ -661,11 +665,8 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#completions_command = "<C-Space>"
 
-" " syntastic
+" syntastic
 " let g:syntastic_python_checkers=['python', 'flake8', 'pylint']
-
-" vim-airline
-let g:airline#extensions#virtualenv#enabled = 1
 
 " Syntax highlight
 " Default highlight is better than polyglot
@@ -684,6 +685,17 @@ endif
 "*****************************************************************************
 "" Convenience variables
 "*****************************************************************************
+
+" vim-airline
+" let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'solarized'
+let g:airline_solarized_bg='dark'
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline_skip_empty_sections = 1
 
 " vim-airline
 if !exists('g:airline_symbols')
@@ -721,7 +733,6 @@ else
   let g:airline_symbols.linenr = ''
 endif
 
-
 " remove whitespace
 " nmap <leader><space> :%s/\s\+$<cr>
 autocmd BufWritePre * :%s/\s\+$//e
@@ -754,7 +765,7 @@ nmap \m :set ts=2 sts=2 sw=2 et<cr>
 " toggle cursor line
 set cursorline
 nnoremap <leader>ci :set cursorline!<cr>
-set cursorcolumn
+" set cursorcolumn
 nnoremap <leader>cc :set cursorcolumn!<cr>
 
 " set number
@@ -794,7 +805,10 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_max_signs = 99999
 
 " fix problem slow scroll vim with hmtl and css files
+" performance vim + tmux + iterm2 mac
 set lazyredraw
+" set nolazyredraw
+" set ttyfast
 
 " " vue plugins
 " autocmd FileType vue syntax sync fromstart
@@ -819,10 +833,10 @@ autocmd FileType typescript syn clear foldBraces
 
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+set statusline+=%*
 " let g:syntastic_check_on_open = 0
 " let g:syntastic_check_on_wq = 0
-" let g:tsuquyomi_disable_quickfix = 1
+let g:tsuquyomi_disable_quickfix = 1
 " let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " angular-cli
@@ -837,7 +851,7 @@ autocmd VimEnter * if globpath('.,..','node_modules/@angular') != '' | call angu
 " hi htmlSpecialChar ctermfg=141 ctermbg=NONE cterm=NONE guifg=#bd93f9 guibg=NONE gui=NONE
 
 " Solarized Theme
-" hi CursorLineNr ctermfg=166 ctermbg=NONE cterm=NONE guifg=#d75f00 guibg=NONE gui=NONE
+hi CursorLineNr ctermfg=166 ctermbg=NONE cterm=NONE guifg=#d75f00 guibg=NONE gui=NONE
 
 " ale
 let g:ale_lint_on_text_changed = 'never'
@@ -848,3 +862,28 @@ let g:ale_fixers = {'python': ['autopep8', 'yapf']}
 " Disable warnings about trailing whitespace for Python files.
 let g:ale_warn_about_trailing_whitespace = 1
 
+" lightline
+let g:lightline = {}
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+
+" Enable Flutter menu
+" call FlutterMenu()
+
+" Some of these key choices were arbitrary;
+" it's just an example.
+nnoremap <leader>fa :FlutterRun<cr>
+nnoremap <leader>fq :FlutterQuit<cr>
+nnoremap <leader>fr :FlutterHotReload<cr>
+nnoremap <leader>fR :FlutterHotRestart<cr>

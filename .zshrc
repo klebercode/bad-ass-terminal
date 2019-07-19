@@ -89,17 +89,17 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -118,16 +118,23 @@ alias init="vim ~/.config/nvim/init.vim"
 alias tmuxconf="vim ~/.tmux.conf"
 alias ws="cd ~/Documents/Workspace/code"
 alias murucutu="ssh root@192.155.93.236"
-alias jacurutu="ssh kleber@134.209.70.17"
-alias tunel="./ngrok http 8000"
+alias jacurutu="ssh root@178.128.149.206"
+alias tunel="./ngrok http"
 alias manage='python $VIRTUAL_ENV/../manage.py'
 alias run='python $VIRTUAL_ENV/../manage.py runserver'
+alias run='python $VIRTUAL_ENV/../manage.py runserver'
+alias runs='stunnel stunnel/dev_https & python $VIRTUAL_ENV/../manage.py runserver & HTTPS=1 python $VIRTUAL_ENV/../manage.py runserver 8001'
 alias rmmigrations='find . -path "*/migrations/*.py" -not -name "__init__.py" -delete'
 alias rmmigrationscache='find . -path "*/migrations/*.pyc"  -delete'
 alias emulator="/Users/klebersoares/Library/Android/sdk/emulator/emulator -avd Nexus_5X_API_28 -netdelay none -netspeed full -dns-server 8.8.8.8"
 alias worknow="./cli/start_work.sh"
 alias reviewnow="./cli/start_review.sh"
 alias nb="manage shell_plus --notebook"
+# alias gitbranchremote="git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done<Paste>"
+alias ionicbuildprod="cross-env ENV='prod' ionic cordova build"
+alias ionicbuilddev="cross-env ENV='dev' ionic cordova build"
+alias ionicserveprod="cross-env ENV='prod' ionic serve"
+alias ionicservedev="cross-env ENV='dev' ionic serve"
 
 # pyenv venv
 function _eac {
@@ -166,15 +173,19 @@ export NVM_DIR="$HOME/.nvm"
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/klebersoares/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
-export PATH=$PATH:`pwd`/flutter/bin
-export PATH="~/Library/Android/sdk/build-tools/28.0.3/zipalign:$PATH"
+export PATH="$PATH:/Users/klebersoares/development/flutter/bin"
+export PATH="$PATH:/Users/klebersoares/Library/Android/sdk/build-tools/28.0.3/zipalign"
 
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
-export LANG="pt_BR.UTF-8"
-export LC_COLLATE="pt_BR.UTF-8"
-export LC_CTYPE="pt_BR.UTF-8"
-export LC_MESSAGES="pt_BR.UTF-8"
-export LC_MONETARY="pt_BR.UTF-8"
-export LC_NUMERIC="pt_BR.UTF-8"
-export LC_TIME="pt_BR.UTF-8"
-export LC_ALL="pt_BR.UTF-8"
+export PATH="/usr/local/sbin:$PATH"
+
+# export LANG="pt_BR.UTF-8"
+# export LC_COLLATE="pt_BR.UTF-8"
+# export LC_CTYPE="pt_BR.UTF-8"
+# export LC_MESSAGES="pt_BR.UTF-8"
+# export LC_MONETARY="pt_BR.UTF-8"
+# export LC_NUMERIC="pt_BR.UTF-8"
+# export LC_TIME="pt_BR.UTF-8"
+# export LC_ALL="pt_BR.UTF-8"

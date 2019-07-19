@@ -82,6 +82,7 @@ Plug 'dracula/vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-python/python-syntax'
 Plug 'joshdick/onedark.vim'
+Plug 'phanviet/vim-monokai-pro'
 
 "*****************************************************************************
 "" Custom bundles
@@ -230,25 +231,28 @@ set number
 " endif
 
 " onedark theme
-if (has("autocmd") && !has("gui_running"))
-  augroup colorset
-    autocmd!
-    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
-  augroup END
-endif
+" if (has("autocmd") && !has("gui_running"))
+"   augroup colorset
+"     autocmd!
+"     let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+"     autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+"   augroup END
+" endif
 
 let no_buffers_menu = 1
 if !exists('g:not_finish_vimplug')
   " colorscheme dracula
 
   " syntax enable
-  " set background=dark
-  " let g:solarized_use16 = 1
-  " colorscheme solarized
+  set background=dark
+  let g:solarized_use16 = 1
+  colorscheme solarized
 
-  syntax on
-  colorscheme onedark
+  " syntax on
+  " colorscheme onedark
+
+  " set termguicolors
+  " colorscheme monokai_pro
 endif
 
 set mousemodel=popup
